@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Flame, Clock, MapPin, Phone, Mail, ArrowUpRight, Sparkles } from 'lucide-react';
-import { RESTAURANT_CONFIG, formatRestaurantTime, formatRestaurantDate } from '@/lib/formatters';
+import { RESTAURANT_CONFIG } from '@/lib/formatters';
 import { useReservation } from '@/hooks/useReservation';
 
 export const Footer: React.FC = () => {
@@ -13,13 +13,16 @@ export const Footer: React.FC = () => {
 
   useEffect(() => {
     // Initial format
-    setRestaurantTime(formatRestaurantTime());
-    setRestaurantDate(formatRestaurantDate());
+    const updateLocalClock = () => {
+      const now = new Date();
+      setRestaurantTime(now.toLocaleTimeString('en-GB', { hour12: false }));
+      setRestaurantDate(now.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }));
+    };
+    updateLocalClock();
 
     // Update interval
     const interval = setInterval(() => {
-      setRestaurantTime(formatRestaurantTime());
-      setRestaurantDate(formatRestaurantDate());
+      updateLocalClock();
     }, 1000);
 
     return () => clearInterval(interval);
@@ -28,9 +31,10 @@ export const Footer: React.FC = () => {
   return (
     <footer className="relative bg-obsidian text-warm-ivory border-t border-champagne-gold/20 overflow-hidden pt-20 pb-12">
       {/* Subtle ambient ember particles background */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-fire-amber/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-ember-red/20 rounded-full blur-[100px]" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-fire-amber/20 rounded-full blur-[120px] opacity-20" />
+        <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-ember-red/20 rounded-full blur-[100px] opacity-20" />
+        <div className="footer-embers" aria-hidden="true">{Array.from({ length: 24 }, (_, index) => <i key={index} style={{ left: `${(index * 37) % 100}%`, animationDelay: `${(index % 8) * -1.3}s`, animationDuration: `${5 + (index % 6)}s` }} />)}</div>
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,7 +46,7 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-champagne-gold">
-                Hearth Time · New York
+                LOCAL TIME OF [ HH : MM : SS ]
               </div>
               <div className="font-display text-2xl sm:text-3xl text-warm-ivory font-light tracking-wide">
                 {restaurantTime || 'Loading Hearth Clock...'}
@@ -73,7 +77,7 @@ export const Footer: React.FC = () => {
                 <Flame className="w-4 h-4 text-fire-amber" />
               </div>
               <span className="font-display text-lg tracking-[0.18em] uppercase text-warm-ivory">
-                Anti-Gravity
+                ANTI-GRAVITY — THE ROYAL FIRE
               </span>
             </div>
             <p className="text-sm text-warm-ivory/70 leading-relaxed font-light">

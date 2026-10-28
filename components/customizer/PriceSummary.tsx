@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, BookmarkCheck, RotateCcw, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { DishConfiguration, CalculatedDishPrice } from '@/types/dish';
 import { formatPrice } from '@/lib/formatters';
@@ -16,6 +16,24 @@ interface PriceSummaryProps {
 export const PriceSummary: React.FC<PriceSummaryProps> = ({ config, calculated, onReset }) => {
   const { openReservationModal } = useReservation();
   const [savedLocally, setSavedLocally] = useState(false);
+  const [displayPrice, setDisplayPrice] = useState(calculated.totalPrice);
+
+  useEffect(() => {
+    const from = displayPrice;
+    const to = calculated.totalPrice;
+    const startedAt = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - startedAt) / 420);
+      const eased = 1 - (1 - progress) ** 3;
+      setDisplayPrice(from + (to - from) * eased);
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+    // displayPrice is the animation's starting value, so only total changes restart it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [calculated.totalPrice]);
 
   const totalSelectedOptionsCount =
     (config.cookingStyleId ? 1 : 0) +
@@ -94,9 +112,10 @@ export const PriceSummary: React.FC<PriceSummaryProps> = ({ config, calculated, 
               Grand Total
             </span>
             <span className="font-display text-3xl sm:text-4xl text-champagne-gold font-medium">
-              {formatPrice(calculated.totalPrice)}
+              {formatPrice(displayPrice)}
             </span>
           </div>
+          <div className="mt-2 flex justify-end"><span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-[10px] uppercase tracking-wider text-emerald-300">Live price · updates with your selections</span></div>
           <p className="text-[10px] text-warm-ivory/40 text-right mt-1">
             Inclusive of culinary mastercraft & gold garnish
           </p>

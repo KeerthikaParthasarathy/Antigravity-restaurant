@@ -10,6 +10,7 @@ import { VisualReviews } from '@/components/sections/VisualReviews';
 import { AtmosphericGallery } from '@/components/sections/AtmosphericGallery';
 import { LocationSection } from '@/components/sections/LocationSection';
 import { Button } from '@/components/ui/Button';
+import { DishCustomizer } from '@/components/customizer/DishCustomizer';
 
 export default function HomePage() {
   return (
@@ -48,6 +49,17 @@ export default function HomePage() {
               </Button>
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="relative py-24 bg-obsidian border-y border-champagne-gold/15 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-champagne-gold mb-3">Interactive 3D Atelier</p>
+            <h2 className="font-display text-4xl sm:text-5xl text-warm-ivory font-light">Craft Your Dish</h2>
+            <p className="mt-4 text-sm text-warm-ivory/65">Build a royal thali, layer each ingredient, and watch your creation take shape.</p>
+          </div>
+          <DishCustomizer />
         </div>
       </section>
 

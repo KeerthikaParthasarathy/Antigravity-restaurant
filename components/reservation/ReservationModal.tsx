@@ -111,7 +111,7 @@ export const ReservationModal: React.FC = () => {
             </div>
             <div>
               <span className="text-[10px] uppercase tracking-[0.25em] text-champagne-gold font-medium block">
-                Imperial Table Reservation
+                Revet Booking
               </span>
               <h2
                 id="reservation-modal-title"

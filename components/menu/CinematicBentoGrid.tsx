@@ -29,7 +29,7 @@ export const CinematicBentoGrid: React.FC = () => {
         {/* Section Heading */}
         <SectionHeading
           eyebrow="Imperial Gastronomy"
-          title="The Royal Hearth Collection"
+          title="Cinematic Bento Grid"
           description="A curated selection of our finest slow-braised cuts, clay-fired crustacea, and 36-hour simmered treasures, crafted with elemental fire."
           align="center"
         />
@@ -39,9 +39,13 @@ export const CinematicBentoGrid: React.FC = () => {
 
           {/* 1. Large Signature Dish Card (Span 2 cols, 2 rows) */}
           <MenuCard
-            dish={signatureDish}
+            dish={biryaniDish}
             onInspect={setSelectedDish}
             featuredSize="large"
+            displayName="Royal Awadhi Dum Biryani"
+            priceLabel="₹1,598"
+            heatClip
+            videoSrc="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4"
           />
 
           {/* 2. Cinematic Cooking Video / Live Flame Card (Span 2 cols) */}
@@ -54,6 +58,7 @@ export const CinematicBentoGrid: React.FC = () => {
               className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-[0.6]"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
+            <video className="absolute inset-0 h-full w-full object-cover opacity-65" autoPlay muted loop playsInline aria-hidden="true"><source src="https://videos.pexels.com/video-files/30044486/30044486-hd_1080_1920_30fps.mp4" type="video/mp4" /></video>
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent" />
 
             <div className="relative z-10">
@@ -64,7 +69,7 @@ export const CinematicBentoGrid: React.FC = () => {
                 Live Hearth Ritual
               </span>
               <h3 className="font-display text-2xl sm:text-3xl text-warm-ivory font-light mb-2">
-                The 36-Hour Continuous Fire
+                Live-Fire Tandoor
               </h3>
               <p className="text-xs sm:text-sm text-warm-ivory/70 font-light max-w-md mb-4 leading-relaxed">
                 Watch our khansamas tend ancient babool wood coals, sealing royal clay handis with wholewheat dough to trap fleeting aromatic steam.
@@ -103,8 +108,11 @@ export const CinematicBentoGrid: React.FC = () => {
 
           {/* 5. Shahi Dum Biryani */}
           <MenuCard
-            dish={biryaniDish}
+            dish={signatureDish}
             onInspect={setSelectedDish}
+            displayName="Royal Kebabs"
+            priceLabel="₹3,990"
+            videoSrc="https://videos.pexels.com/video-files/30044486/30044486-hd_1080_1920_30fps.mp4"
           />
 
           {/* 6. Dal-e-Sultanat */}

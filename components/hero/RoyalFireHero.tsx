@@ -70,7 +70,7 @@ export const RoyalFireHero: React.FC = () => {
               Royal Culinary Theatre
             </Badge>
             <span className="text-xs uppercase tracking-[0.2em] text-champagne-gold/70 font-sans">
-              Awadh · Rajputana · Silk Route
+              Awadh · Rajputana · Silk Route | The Art of Fire.
             </span>
           </motion.div>
 
@@ -80,9 +80,9 @@ export const RoyalFireHero: React.FC = () => {
             transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-light text-warm-ivory tracking-tight leading-[1.08] mb-6"
           >
-            The Art of Fire.{' '}
+            BORN IN FIRE.
             <span className="block italic text-champagne-gold">
-              The Soul of Heritage.
+              SEALED IN FLAVOUR.
             </span>
           </motion.h1>
 
@@ -92,7 +92,7 @@ export const RoyalFireHero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-warm-ivory/70 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-lg"
           >
-            Experience a suspended world of ancient smoke, 36-hour embers, and imperial slow-cooked delicacies. Reimagined through live digital alchemy and royal hospitality.
+            Awadh · Rajputana · Silk Route | The Art of Fire.
           </motion.p>
 
           {/* Action CTAs (Phase 5) */}
@@ -149,6 +149,8 @@ export const RoyalFireHero: React.FC = () => {
           ) : (
             <div className="w-full h-full relative">
               <RoyalVesselScene />
+              <div className="vessel-steam" aria-hidden="true"><i /><i /><i /></div>
+              {heatValue > 70 && <div className="vessel-flare" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>}
               {/* Interactive prompt overlay */}
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none text-center">
                 <span className="text-[10px] uppercase tracking-[0.2em] text-champagne-gold/60 font-sans px-3 py-1 rounded-pill bg-obsidian/70 border border-champagne-gold/20">

@@ -156,11 +156,7 @@ export const HeatGaugeDial: React.FC = () => {
               <span className="text-xs text-champagne-gold/80 font-sans">%</span>
             </div>
             <span className="text-[10px] text-warm-ivory/60 uppercase tracking-widest mt-0.5">
-              {heatValue < 30
-                ? 'Gentle Ember'
-                : heatValue < 75
-                ? 'Royal Dum'
-                : 'Inferno Flame'}
+              {heatValue < 35 ? 'Gentle Royalty' : heatValue > 70 ? 'Tandoor Inferno' : 'Royal Dum'}
             </span>
           </div>
         </div>

@@ -103,3 +103,72 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.footer-embers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.footer-embers i {
+  position: absolute;
+  bottom: -12px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #f28c28;
+  box-shadow: 0 0 10px 2px rgba(242, 140, 40, .65);
+  animation: ember-rise linear infinite;
+}
+
+@keyframes ember-rise {
+  0% { transform: translate3d(0, 0, 0) scale(.5); opacity: 0; }
+  15% { opacity: .9; }
+  100% { transform: translate3d(24px, -520px, 0) scale(0); opacity: 0; }
+}
+
+.vessel-steam {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 16%;
+  width: 110px;
+  height: 150px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: blur(10px);
+}
+.vessel-steam i {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 32px;
+  height: 95px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(244,239,229,.32), rgba(244,239,229,.08) 45%, transparent 72%);
+  animation: steam-rise 4.5s ease-in-out infinite;
+}
+.vessel-steam i:nth-child(2) { animation-delay: -1.5s; margin-left: -22px; }
+.vessel-steam i:nth-child(3) { animation-delay: -3s; margin-left: 18px; }
+@keyframes steam-rise {
+  0% { opacity: 0; transform: translate(-50%, 18px) scale(.65, .5); }
+  30% { opacity: .75; }
+  100% { opacity: 0; transform: translate(calc(-50% + 12px), -80px) scale(1.35, 1.2); }
+}
+.vessel-flare { position: absolute; z-index: 1; inset: 42% 12% 2%; pointer-events: none; }
+.vessel-flare i {
+  position: absolute;
+  bottom: 0;
+  left: calc(8% + var(--n, 0) * 15%);
+  width: 36px;
+  height: 100px;
+  border-radius: 60% 40% 50% 50%;
+  background: radial-gradient(ellipse at 50% 80%, #fff2a6 0%, #ffc247 25%, #f36a1b 58%, transparent 75%);
+  filter: blur(5px);
+  transform-origin: 50% 100%;
+  animation: flare-dance .65s ease-in-out infinite alternate;
+}
+.vessel-flare i:nth-child(2n) { height: 125px; animation-delay: -.3s; }
+.vessel-flare i:nth-child(3n) { height: 76px; animation-delay: -.5s; }
+@keyframes flare-dance { from { transform: scaleY(.7) rotate(-9deg); opacity: .6; } to { transform: scaleY(1.2) rotate(9deg); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .vessel-steam i, .vessel-flare i { animation: none; } }

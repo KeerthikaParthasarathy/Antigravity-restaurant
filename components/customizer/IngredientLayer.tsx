@@ -80,7 +80,7 @@ export const IngredientLayer: React.FC<IngredientLayerProps> = ({
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <label className="text-xs uppercase tracking-[0.2em] text-champagne-gold font-medium">
-            4. Artisanal Breads & Rice Sides
+            4. Rice / Bases & Artisanal Sides
           </label>
           <span className="text-[11px] text-warm-ivory/50">Optional</span>
         </div>

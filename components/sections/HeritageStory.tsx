@@ -16,7 +16,7 @@ export const HeritageStory: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           eyebrow="Elemental Heritage"
-          title="The Ancient Artistry of Fire"
+          title="Authentic Storytelling - Culinary Storytelling"
           description="In royal Awadh and Rajputana, fire was never merely a heating element—it was treated as a living collaborator, measured by smoke density, ash cooling, and earthenware breathe."
           align="center"
         />
@@ -33,6 +33,7 @@ export const HeritageStory: React.FC = () => {
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
+              <video className="absolute inset-0 h-full w-full object-cover opacity-45" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80" aria-label="Open-fire cooking and rising steam"><source src="https://videos.pexels.com/video-files/37252934/37252934-hd_1920_1080_30fps.mp4" type="video/mp4" /></video>
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
             </div>
 

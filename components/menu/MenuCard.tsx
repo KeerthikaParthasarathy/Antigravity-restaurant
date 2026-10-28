@@ -13,9 +13,13 @@ interface MenuCardProps {
   dish: MenuItem;
   onInspect: (dish: MenuItem) => void;
   featuredSize?: 'normal' | 'large' | 'wide';
+  displayName?: string;
+  priceLabel?: string;
+  heatClip?: boolean;
+  videoSrc?: string;
 }
 
-export const MenuCard: React.FC<MenuCardProps> = ({ dish, onInspect, featuredSize = 'normal' }) => {
+export const MenuCard: React.FC<MenuCardProps> = ({ dish, onInspect, featuredSize = 'normal', displayName, priceLabel, heatClip, videoSrc }) => {
   const isLarge = featuredSize === 'large';
   const isWide = featuredSize === 'wide';
 
@@ -38,10 +42,13 @@ export const MenuCard: React.FC<MenuCardProps> = ({ dish, onInspect, featuredSiz
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        {videoSrc && <video className="absolute inset-0 h-full w-full object-cover opacity-70" autoPlay muted loop playsInline poster={dish.videoPoster || dish.image} aria-hidden="true"><source src={videoSrc} type="video/mp4" /></video>}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-transparent" />
 
         {/* Top Badges */}
         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+          {isLarge && <Badge variant="gold" size="sm">Oversized card</Badge>}
+          {heatClip && <Badge variant="charcoal" size="sm">Heat-Gauge Clip</Badge>}
           {dish.featured && (
             <Badge variant="gold" size="sm">
               <Sparkles className="w-2.5 h-2.5 mr-1 text-fire-amber" />
@@ -58,7 +65,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ dish, onInspect, featuredSiz
         {/* Price Pill */}
         <div className="absolute top-3 right-3 z-10">
           <span className="px-3 py-1 rounded-pill bg-obsidian/85 backdrop-blur-md border border-champagne-gold/30 font-display text-sm sm:text-base text-champagne-gold font-medium">
-            {formatPrice(dish.price)}
+            {priceLabel || formatPrice(dish.price)}
           </span>
         </div>
       </div>
@@ -70,7 +77,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({ dish, onInspect, featuredSiz
             {dish.royalTitle}
           </span>
           <h3 className="font-display text-xl sm:text-2xl text-warm-ivory group-hover:text-champagne-gold transition-colors font-light leading-snug mb-2">
-            {dish.name}
+            {displayName || dish.name}
           </h3>
           <p className="text-xs sm:text-sm text-warm-ivory/70 line-clamp-2 font-light leading-relaxed mb-4">
             {dish.description}
